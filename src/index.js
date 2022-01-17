@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -11,6 +11,8 @@ import {
 } from "react-router-dom";
 import Expenses from "./routes/expenses";
 import Invoices from "./routes/invoices";
+import Races from "./routes/races";
+import Race from "./routes/race";
 
 const rootElement = document.getElementById("root");
 render(
@@ -19,6 +21,8 @@ render(
       <Route path="/" element={<App />} />
       <Route path="expenses" element={<Expenses />} />
       <Route path="invoices" element={<Invoices />} />
+      <Route path="races/:id" element={<Race />} />
+      <Route path="races" element={<Races />} />
     </Routes>
   </BrowserRouter>,
   rootElement
