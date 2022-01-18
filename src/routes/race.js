@@ -33,6 +33,7 @@ export default function Races() {
     .then(res => {
       setRace(res);
       setIsLoading(false);
+      console.log(res);
     });
   }, [id]);
 
@@ -67,8 +68,13 @@ export default function Races() {
                 </div>
               </div>
               <div id={"driver-" + driver.id} style={styles.driverDetails}>
-              {driver.laps.map(lap => (
+              {/* {driver.laps.map(lap => (
                 <p key={lap.id}>({lap.session_type}) lap {lap.lap_number}: {lap.lap_time}s</p>
+              ))} */}
+              {driver.laps.race.map(lap => (
+                // session.laps.map(lap => {
+                  <p key={lap.id}>lap {lap.lap_number}: {lap.lap_time}s</p>
+                // })
               ))}
               </div>
             </div>
@@ -108,6 +114,7 @@ const styles = {
     borderRadius: "0.3rem"
   },
   driverSummary: {
+    cursor: "pointer",
     border: "1px solid black",
     borderRadius: "0.3rem",
     marginBottom: "0.5rem",
