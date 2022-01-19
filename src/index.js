@@ -14,6 +14,7 @@ import Invoices from "./routes/invoices";
 import Races from "./routes/races";
 import Race from "./routes/race";
 import ResultsQualifying from './routes/ResultsQualifying';
+import User from './routes/user';
 
 const rootElement = document.getElementById("root");
 render(
@@ -25,6 +26,7 @@ render(
       <Route path="races/:id/qualifying" element={<ResultsQualifying />} />
       <Route path="races/:id" element={<Race />} />
       <Route path="races" element={<Races />} />
+      <Route path="users/:id" element={<User />} />
     </Routes>
   </BrowserRouter>,
   rootElement

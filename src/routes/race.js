@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
+import "../styles/race.css";
 
 export default function Races() {
   const [race, setRace] = useState([]);
@@ -38,34 +39,40 @@ export default function Races() {
   }, [id]);
 
   return (
-    <div style={styles.container}>
+    <div className="container">
       { isLoading &&
       <div>Loading.. please wait!</div>
       }
       { !isLoading &&
         <div>
-          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem"}}>
+          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
             <div>
               <div style={styles.trackName}>{race.track_name}</div>
               <div style={styles.vehicleName}>{race.drivers[0].vehicle}</div>
             </div>
             <div style={styles.finishDate}>{race.finish_date}</div>
           </div>
-          <h2>Your average lap time: {race.drivers[0].avg_race_lap_time}s</h2>
-          <h2>Average lap time for other drivers: {race.avg_race_lap_time_all}s</h2>
-          <h2>Opponents: {race.num_opponents}</h2>
-          <hr style={{marginTop: "2rem"}}/>
-          {race.drivers.map(driver => (
+          <div style={{paddingTop: "1rem", marginBottom: "2rem"}}>
+            <div className="qualifying-btn" onClick={() => navigate("/races/" + id + "/qualifying")}>Qualifying</div>
+          </div>
+          <h2 className="race-stat">Your average lap time: {race.drivers[0].avg_race_lap_time}s</h2>
+          <h2 className="race-stat">Average lap time for other drivers: {race.avg_race_lap_time_all}s</h2>
+          <h2 className="race-stat">Opponents: {race.num_opponents}</h2>
+          <div className="driver-summary-header">
+            <p>Position</p>
+            <p>Driver</p>
+            <p>Vehicle</p>
+            <p>Gap</p>
+            <p>Best Lap</p>
+          </div>
+          {race.drivers.map((driver, i) => (
             <div key={"driver-" + driver.id}>
-              <div style={styles.driverSummary} onClick={() => toggleDetails(driver.id)}>
-                <div style={{display: "flex", justifyContent: "space-between"}}>
-                  <div>
-                    {driver.name}
-                  </div>
-                  <div>
-                    {driver.vehicle} | {driver.race_pos}
-                  </div>
-                </div>
+              <div className="driver-summary" onClick={() => toggleDetails(driver.id)}>
+                <p>{i + 1}</p>
+                <div>{driver.name}</div>
+                <div>{driver.vehicle}</div>
+                <div>+0.042</div>
+                <div>{Number(driver.fastest_race_lap.lap_time).toFixed(3)}s</div>
               </div>
               <div id={"driver-" + driver.id} style={styles.driverDetails}>
               {/* {driver.laps.map(lap => (
@@ -79,11 +86,11 @@ export default function Races() {
               </div>
             </div>
           ))}
+          <div style={{paddingTop: "1rem"}}>
+            <div style={styles.deleteBtn} onClick={handleDelete}>Delete</div>
+          </div>
         </div>
       }
-      <div style={{paddingTop: "1rem"}}>
-        <div style={styles.deleteBtn} onClick={handleDelete}>Delete</div>
-      </div>
     </div>
   );
 }

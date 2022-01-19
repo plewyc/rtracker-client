@@ -1,0 +1,49 @@
+.container {
+  padding: 2% 10%;
+  padding-top: 2rem;
+  background-color: #1d1f26;
+  color: rgb(230, 230, 230);
+  height: 100vh;
+}
+
+.race-stat {
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+.driver-summary-header {
+  color: white;
+  background-color: #545a8e;
+  border-radius: 0.3rem;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  display: grid;
+  grid-template-columns: 5rem 2fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.driver-summary {
+  cursor: pointer;
+  /* border: 1px solid black; */
+  background-color: #292d4b;
+  border-radius: 0.3rem;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  display: grid;
+  /* // gridTemplateColumns: 5rem 1fr 10rem 10rem 10rem 10rem 10rem; */
+  grid-template-columns: 5rem 2fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.qualifying-btn {
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  background: #545a8e;
+  color: white;
+  display: inline;
+  border-radius: 0.3rem;
+}
+
+.qualifying-btn:hover {
+  background: #292d4b;
+}

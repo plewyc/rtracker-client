@@ -10,7 +10,7 @@ export default function Races() {
   }, []);
 
   return (
-<table className="table-auto mx-auto">
+<table style={{color: "white"}}>
   <thead>
     <tr>
       <th style={{padding: "0 0.5rem"}}>Circuit</th>

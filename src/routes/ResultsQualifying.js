@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
+import '../styles/qualifying.css';
 
 export default function ResultsQualifying() {
   const [race, setRace] = useState([]);
@@ -28,24 +29,27 @@ export default function ResultsQualifying() {
   }
 
   return (
-    <div style={styles.container}>
+    <div className="container">
       { isLoading &&
       <div>Loading.. please wait!</div>
       }
       { !isLoading &&
         <div>
-          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem"}}>
+          <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
             <div>
-              <div style={styles.trackName}>{race.track_name}</div>
-              <div style={styles.vehicleName}>{race.drivers[0].vehicle}</div>
+              <div className="track-name">{race.track_name}</div>
+              <div className="vehicle-name">{race.drivers[0].vehicle}</div>
             </div>
-            <div style={styles.finishDate}>{race.finish_date}</div>
+            <div class="finish-date">{race.finish_date}</div>
           </div>
-          <h2>Your average lap time: {Number(race.drivers[0].avg_race_lap_time).toFixed(3)}s</h2>
-          <h2>Average lap time for other drivers: {Number(race.avg_race_lap_time_all).toFixed(3)}s</h2>
-          <h2>Opponents: {race.num_opponents}</h2>
+          <div style={{paddingTop: "1rem", marginBottom: "2rem"}}>
+            <div className="race-btn" onClick={() => navigate("/races/" + id)}>Race</div>
+          </div>
+          <h2 className="race-stat">Your average lap time: {Number(race.drivers[0].avg_race_lap_time).toFixed(3)}s</h2>
+          <h2 className="race-stat">Average lap time for other drivers: {Number(race.avg_race_lap_time_all).toFixed(3)}s</h2>
+          <h2 className="race-stat">Opponents: {race.num_opponents}</h2>
           {/* <hr style={{marginTop: "2rem"}}/> */}
-          <div style={styles.driverSummaryHeader}>
+          <div className="driver-summary-header">
             <p>Position</p>
             <p>Driver details</p>
             <p>Gap</p>
@@ -57,7 +61,7 @@ export default function ResultsQualifying() {
           {race.drivers.map((driver, i) => (
             <div>
             <div key={"driver-" + driver.id}>
-              <div style={styles.driverSummary} onClick={() => toggleDetails(driver.id)}>
+              <div className="driver-summary" onClick={() => toggleDetails(driver.id)}>
                 <p>{i + 1}</p>
                 <div>
                   <div>{driver.name}</div>
@@ -70,12 +74,12 @@ export default function ResultsQualifying() {
                 {driver.fastest_qualifying_lap === null ? <p></p> : <p>{Number(driver.fastest_qualifying_lap.sector_3).toFixed(3)}s</p>}
               </div>
             </div>
-            <div id={"driver-" + driver.id} style={styles.driverDetails}>
+            <div id={"driver-" + driver.id} className="driver-details">
               {/* {driver.laps.map(lap => (
                 <p key={lap.id}>({lap.session_type}) lap {lap.lap_number}: {lap.lap_time}s</p>
               ))} */}
               {driver.laps.qualifying.map((lap, index) => (
-                <div style={styles.qualifyingDetails}>
+                <div className={index % 2 === 0 ? "qualifying-details" : "qualifying-details-alt"}>
                   <p>lap {lap.lap_number}</p>
                   <p></p>
                   {lap.lap_time === driver.fastest_qualifying_lap.lap_time ? <p></p> :  <p>+{Number(lap.lap_time - driver.fastest_qualifying_lap.lap_time).toFixed(3)}s</p>}
@@ -95,23 +99,6 @@ export default function ResultsQualifying() {
 }
 
 const styles = {
-  container: {
-    margin: "2% 10%",
-  },
-  trackName: {
-    fontWeight: "bold",
-    fontSize: "3em",
-    marginBottom: "0"
-  },
-  vehicleName: {
-    fontWeight: "500",
-  },
-  finishDate: {
-    textAlign: "right",
-    color: "gray",
-    fontWeight: "thin",
-    fontSize: "1em"
-  },
   deleteBtn: {
     padding: "0.3rem 0.6rem",
     background: "red",
@@ -119,45 +106,13 @@ const styles = {
     display: "inline",
     borderRadius: "0.3rem"
   },
-  driverSummaryHeader: {
-    border: "1px solid black",
-    borderRadius: "0.3rem",
-    marginBottom: "0.5rem",
-    padding: "0.3rem 0.7rem",
-    display: "grid",
-    gridTemplateColumns: "5rem 2fr 1fr 1fr 1fr 1fr 1fr",
-    alignItems: "center"
-  },
-  driverSummary: {
-    cursor: "pointer",
-    border: "1px solid black",
-    borderRadius: "0.3rem",
-    marginBottom: "0.5rem",
-    padding: "0.3rem 0.7rem",
-    display: "grid",
-    // gridTemplateColumns: "5rem 1fr 10rem 10rem 10rem 10rem 10rem",
-    gridTemplateColumns: "5rem 2fr 1fr 1fr 1fr 1fr 1fr",
-    alignItems: "center"
-  },
-  qualifyingDetails: {
-    display: "grid",
-    gridTemplateColumns: "5rem 2fr 1fr 1fr 1fr 1fr 1fr",
-    alignItems: "center",
-    margin: "0.5rem 0"
-  },
   // driverSummary: {
   //   border: "1px solid black",
   //   borderRadius: "0.3rem",
   //   marginBottom: "0.5rem",
   //   padding: "0.3rem 0.7rem",
   // },
-  driverDetails: {
-    display: "none",
-    marginBottom: "0.5rem",
-    padding: "0.3rem 0.7rem",
-    borderRadius: "0.3rem",
-    border: "1px solid black"
-  },
+
   position: {
     border: "1px solid black",
     borderRadius: "50%",
