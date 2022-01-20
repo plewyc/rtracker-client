@@ -35,7 +35,7 @@ export default function Races() {
   }
 
   useEffect(() => {
-    fetch('http://rf2tracker/races/' + id)
+    fetch('http://rf2tracker.herokuapp.com/races/' + id)
     .then(res => res.json())
     .then(res => {
       setRace(res);
@@ -65,7 +65,7 @@ export default function Races() {
             <h2 className="race-stat">Average lap time for other drivers: {race.avg_race_lap_time_all}s</h2>
             <h2 className="race-stat">Opponents: {race.num_opponents}</h2>
           </div>
-          {console.log(race.drivers[0].timed_statistics)}
+          {/* {console.log(race.drivers[0].timed_statistics)} */}
           <div className="driver-summary-header">
             <p>Position</p>
             <p>Driver</p>
@@ -95,7 +95,7 @@ export default function Races() {
          <VictoryAxis
          dependentAxis
          label="Gap to leader"
-         minDomain="0"
+         minDomain={0}
           style={{axisLabel: {padding: 38, fill: "white"}, axis: { stroke: "white"}, tickLabels: { fill: "white"}}}
         />
             <VictoryLine interpolation="natural" style={{data: { stroke: "#c43a31" }}} data={driver.timed_statistics} x="time" y="gap_to_leader" />
