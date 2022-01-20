@@ -35,7 +35,7 @@ export default function Races() {
   }
 
   useEffect(() => {
-    fetch('http://rf2tracker.herokuapp.com/races/' + id)
+    fetch('https://rf2tracker.herokuapp.com/races/' + id)
     .then(res => res.json())
     .then(res => {
       setRace(res);
