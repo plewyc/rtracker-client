@@ -10,13 +10,15 @@ export default function Races() {
   const { id } = useParams()
 
   const handleDelete = () => {
-    fetch('https://rf2tracker.herokuapp.com/races/' + id, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(() => navigate("/races"))
+    if (window.confirm("Are you sure you want to delete this race?")) {
+      fetch('https://rf2tracker.herokuapp.com/races/' + id, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(() => navigate("/races"))
+    }
   }
 
   const toggleDetails = (driverId) => {
@@ -55,9 +57,11 @@ export default function Races() {
           <div style={{paddingTop: "1rem", marginBottom: "2rem"}}>
             <div className="qualifying-btn" onClick={() => navigate("/races/" + id + "/qualifying")}>Qualifying</div>
           </div>
-          <h2 className="race-stat">Your average lap time: {race.drivers[0].avg_race_lap_time}s</h2>
-          <h2 className="race-stat">Average lap time for other drivers: {race.avg_race_lap_time_all}s</h2>
-          <h2 className="race-stat">Opponents: {race.num_opponents}</h2>
+          <div className="race-info">
+            <h2 className="race-stat">Your average lap time: {race.drivers[0].avg_race_lap_time}s</h2>
+            <h2 className="race-stat">Average lap time for other drivers: {race.avg_race_lap_time_all}s</h2>
+            <h2 className="race-stat">Opponents: {race.num_opponents}</h2>
+          </div>
           <div className="driver-summary-header">
             <p>Position</p>
             <p>Driver</p>

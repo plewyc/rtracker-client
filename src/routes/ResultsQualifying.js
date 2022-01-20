@@ -43,11 +43,11 @@ export default function ResultsQualifying() {
             <div class="finish-date">{race.finish_date}</div>
           </div>
           <div style={{paddingTop: "1rem", marginBottom: "2rem"}}>
-            <div className="race-btn" onClick={() => navigate("/races/" + id)}>Race</div>
+            <div className="race-btn" onClick={() => navigate("/races/" + id)}>Overview</div>
           </div>
-          <h2 className="race-stat">Your average lap time: {Number(race.drivers[0].avg_race_lap_time).toFixed(3)}s</h2>
+          {/* <h2 className="race-stat">Your average lap time: {Number(race.drivers[0].avg_race_lap_time).toFixed(3)}s</h2>
           <h2 className="race-stat">Average lap time for other drivers: {Number(race.avg_race_lap_time_all).toFixed(3)}s</h2>
-          <h2 className="race-stat">Opponents: {race.num_opponents}</h2>
+          <h2 className="race-stat">Opponents: {race.num_opponents}</h2> */}
           {/* <hr style={{marginTop: "2rem"}}/> */}
           <div className="driver-summary-header">
             <p>Position</p>

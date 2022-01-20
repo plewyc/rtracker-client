@@ -31,7 +31,7 @@
   padding: 0.3rem 0.7rem;
   display: grid;
   /* // gridTemplateColumns: 5rem 1fr 10rem 10rem 10rem 10rem 10rem; */
-  grid-template-columns: 5rem 2fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 5rem 2fr 1fr 1fr 1fr;
   align-items: center;
 }
 
@@ -45,5 +45,11 @@
 }
 
 .qualifying-btn:hover {
-  background: #292d4b;
+  background: #303454;
+}
+
+.race-info {
+  background: #171928;
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
 }
