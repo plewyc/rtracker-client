@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import "../styles/race.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import * as V from 'victory';
+import { VictoryChart, VictoryLine, VictoryAxis, VictoryBar } from 'victory';
 
 export default function Races() {
   const [race, setRace] = useState([]);
@@ -31,12 +35,11 @@ export default function Races() {
   }
 
   useEffect(() => {
-    fetch('https://rf2tracker.herokuapp.com/races/' + id)
+    fetch('http://localhost:3000/races/' + id)
     .then(res => res.json())
     .then(res => {
       setRace(res);
       setIsLoading(false);
-      console.log(res);
     });
   }, [id]);
 
@@ -62,6 +65,7 @@ export default function Races() {
             <h2 className="race-stat">Average lap time for other drivers: {race.avg_race_lap_time_all}s</h2>
             <h2 className="race-stat">Opponents: {race.num_opponents}</h2>
           </div>
+          {console.log(race.drivers[0].timed_statistics)}
           <div className="driver-summary-header">
             <p>Position</p>
             <p>Driver</p>
@@ -69,22 +73,58 @@ export default function Races() {
             <p>Gap</p>
             <p>Best Lap</p>
           </div>
-          {race.drivers.map((driver, i) => (
+          {race.drivers.sort((a, b) => a.race_pos > b.race_pos ? 1 : -1).map((driver, i) => (
             <div key={"driver-" + driver.id}>
               <div className="driver-summary" onClick={() => toggleDetails(driver.id)}>
-                <p>{i + 1}</p>
+                <p>{driver.race_pos}</p>
                 <div>{driver.name}</div>
                 <div>{driver.vehicle}</div>
-                <div>+0.042</div>
+                <div>{i !== 0 ? "+" + Number(driver.timed_statistics[driver.timed_statistics.length - 1].gap_to_leader).toFixed(3) + "s" : null}</div>
                 <div>{Number(driver.fastest_race_lap.lap_time).toFixed(3)}s</div>
               </div>
               <div id={"driver-" + driver.id} style={styles.driverDetails}>
               {/* {driver.laps.map(lap => (
                 <p key={lap.id}>({lap.session_type}) lap {lap.lap_number}: {lap.lap_time}s</p>
               ))} */}
-              {driver.laps.race.map(lap => (
+                        <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", padding: "1rem"}}>
+          <VictoryChart>
+          <VictoryAxis
+          label="Time (s)"
+          style={{axisLabel: {padding: 30, fill: "white"}, axis: { stroke: "white"}, tickLabels: { fill: "white"}}}
+        />
+         <VictoryAxis
+         dependentAxis
+         label="Gap to leader"
+         minDomain="0"
+          style={{axisLabel: {padding: 38, fill: "white"}, axis: { stroke: "white"}, tickLabels: { fill: "white"}}}
+        />
+            <VictoryLine interpolation="natural" style={{data: { stroke: "#c43a31" }}} data={driver.timed_statistics} x="time" y="gap_to_leader" />
+          </VictoryChart>
+
+          <VictoryChart>
+          <VictoryAxis
+          style={{axisLabel: {fill: "white", padding: 30}, axis: { stroke: "white"}, tickLabels: {fill: "white"}, ticks: {stroke: "grey", size: 5}}} label="Time (s)"
+        />
+         <VictoryAxis
+         dependentAxis
+         invertAxis
+         label="Position"
+         domain={[1, race.num_opponents + 1]}
+         tickValues={[...Array(race.num_opponents + 1).keys()].map(i => i % 2 === 0 ? i + 1 : null)}
+          style={{axisLabel: {fill: "white", padding: 38}, axis: { stroke: "white"}, tickLabels: { fill: "white" }, ticks: {stroke: "grey", size: 5} } }
+        />
+            <VictoryLine style={{data: { stroke: "#c43a31" }}} data={driver.timed_statistics} x="time" y="race_position" />
+          </VictoryChart>
+            </div>
+              {driver.laps.race.map((lap, i) => (
+                <div className={i % 2 !== 0 ? "driver-stats" : "driver-stats-alt"}>
+                  <div>{"lap " + lap.lap_number}</div>
+                  <div>{Number(lap.lap_time).toFixed(3) + "s"}</div>
+                  <div>{Number(lap.sector_1).toFixed(3) + "s"}</div>
+                  <div>{Number(lap.sector_2).toFixed(3) + "s"}</div>
+                  <div>{Number(lap.sector_3).toFixed(3) + "s"}</div>
+                </div>
                 // session.laps.map(lap => {
-                  <p key={lap.id}>lap {lap.lap_number}: {lap.lap_time}s</p>
                 // })
               ))}
               </div>
@@ -134,8 +174,7 @@ const styles = {
   driverDetails: {
     display: "none",
     marginBottom: "0.5rem",
-    padding: "0.3rem 0.7rem",
     borderRadius: "0.3rem",
-    border: "1px solid black"
+    background: "rgb(53, 53, 75)"
   }
 }

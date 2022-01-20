@@ -53,3 +53,16 @@
   padding: 0.5rem 2rem;
   border-radius: 1rem;
 }
+
+.driver-stats {
+  display: grid;
+  grid-template-columns: 5rem 1fr 1fr 1fr 1fr;
+  padding: 0.6rem 1rem;
+}
+
+.driver-stats-alt {
+  display: grid;
+  grid-template-columns: 5rem 1fr 1fr 1fr 1fr;
+  padding: 0.6rem 1rem;
+  background: rgb(47, 47, 67);
+}
