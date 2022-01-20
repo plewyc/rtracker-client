@@ -35,7 +35,7 @@ export default function Races() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:3000/races/' + id)
+    fetch('http://rf2tracker/races/' + id)
     .then(res => res.json())
     .then(res => {
       setRace(res);
