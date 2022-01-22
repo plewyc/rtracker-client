@@ -66,3 +66,42 @@
   padding: 0.6rem 1rem;
   background: rgb(47, 47, 67);
 }
+
+#ai-update-form {
+  display: none;
+  justify-content: space-between;
+}
+
+.update-ai-btn {
+  font-size: 0.8em;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  background: #545a8e;
+  color: white;
+  display: inline;
+  border-radius: 0.3rem;
+}
+
+.update-ai-btn:hover {
+  background: #303454;
+}
+
+.ai-form-field {
+  display: flex;
+  justify-content: space-between;
+  width: 10rem;
+}
+
+#ai-update-submit {
+  font-size: 0.8em;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  background: #545a8e;
+  color: white;
+  display: inline;
+  border-radius: 0.3rem;
+}
+
+#ai-update-submit:hover {
+  background: #303454;
+}

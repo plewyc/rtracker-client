@@ -34,6 +34,38 @@ export default function Races() {
     }
   }
 
+  const showUpdateForm = () => {
+    let form = document.getElementById("ai-update-form");
+    if (form.style.display === "none") {
+      document.getElementById("ai-attributes").style.display = "none";
+      document.getElementById("ai-update-form").style.display = "block";
+    } else {
+      document.getElementById("ai-attributes").style.display = "block";
+      document.getElementById("ai-update-form").style.display = "none";
+    }
+  }
+
+  const updateAiAttributes = () => {
+    const ai_skill = document.getElementById("ai-skill-field").value;
+    const ai_aggression = document.getElementById("ai-aggression-field").value;
+    const ai_limiter = document.getElementById("ai-limiter-field").value;
+
+    fetch('https://rf2tracker.herokuapp.com/races/' + id, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        race: {
+          opponent_skill: ai_skill,
+          opponent_aggression: ai_aggression,
+          ai_limiter: ai_limiter
+        }
+      })
+    })
+    .then(() => window.location.reload());
+  }
+
   useEffect(() => {
     fetch('https://rf2tracker.herokuapp.com/races/' + id)
     .then(res => res.json())
@@ -61,9 +93,30 @@ export default function Races() {
             <div className="qualifying-btn" onClick={() => navigate("/races/" + id + "/qualifying")}>Qualifying</div>
           </div>
           <div className="race-info">
-            <h2 className="race-stat">Your average lap time: {race.drivers[0].avg_race_lap_time}s</h2>
-            <h2 className="race-stat">Average lap time for other drivers: {race.avg_race_lap_time_all}s</h2>
+            <h2 className="race-stat">Your average lap time: {Number(race.drivers[0].avg_race_lap_time).toFixed(3)}s</h2>
+            <h2 className="race-stat">Average lap time for other drivers: {Number(race.avg_race_lap_time_all).toFixed(3)}s</h2>
             <h2 className="race-stat">Opponents: {race.num_opponents}</h2>
+            {/* <div id="ai-attributes" style={{marginBottom: "1rem"}}>
+              <h2 id="ai-skill" className="race-stat">AI skill: {race.opponent_skill !== null ? race.opponent_skill : <span>NOT SET</span>}</h2>
+              <h2 id="ai-aggression" className="race-stat">AI aggression: {race.opponent_aggression !== null ? race.opponent_aggression : "NOT SET"}</h2>
+              <h2 id="ai-limiter" className="race-stat">AI limiter: {false ? race.ai_limiter : "NOT SET"}</h2>
+              <div className="update-ai-btn" onClick={() => showUpdateForm()}>Update AI</div>
+            </div> */}
+            <div id="ai-update-form">
+              <div className="ai-form-field">
+                <div>AI skill</div>
+                <input type="number" id="ai-skill-field" min="0" max="120" step="1" />
+              </div>
+              <div className="ai-form-field">
+                <div>AI aggression</div>
+                <input type="number" id="ai-aggression-field" min="0" max="100" step="1" />
+              </div>
+              <div className="ai-form-field">
+                <div>AI limiter</div>
+                <input type="number" id="ai-limiter-field" min="0" max="100" step="1" />
+              </div>
+              <div id="ai-update-submit" onClick={() => updateAiAttributes()}>Update</div>
+            </div>
           </div>
           {/* {console.log(race.drivers[0].timed_statistics)} */}
           <div className="driver-summary-header">
@@ -90,13 +143,13 @@ export default function Races() {
           <VictoryChart>
           <VictoryAxis
           label="Time (s)"
-          style={{axisLabel: {padding: 30, fill: "white"}, axis: { stroke: "white"}, tickLabels: { fill: "white"}}}
+          style={{axisLabel: {padding: 30, fill: "white"}, ticks: {stroke: "grey", size: 5}, axis: { stroke: "white"}, tickLabels: { fill: "white"}}}
         />
          <VictoryAxis
          dependentAxis
          label="Gap to leader"
          minDomain={0}
-          style={{axisLabel: {padding: 38, fill: "white"}, axis: { stroke: "white"}, tickLabels: { fill: "white"}}}
+          style={{axisLabel: {padding: 38, fill: "white"}, axis: { stroke: "white"}, tickLabels: { fill: "white"}, ticks: {stroke: "grey", size: 5}}}
         />
             <VictoryLine interpolation="natural" style={{data: { stroke: "#c43a31" }}} data={driver.timed_statistics} x="time" y="gap_to_leader" />
           </VictoryChart>
@@ -116,6 +169,13 @@ export default function Races() {
             <VictoryLine style={{data: { stroke: "#c43a31" }}} data={driver.timed_statistics} x="time" y="race_position" />
           </VictoryChart>
             </div>
+              <div className={"driver-stats-alt"}>
+                <div>Lap #</div>
+                <div>Lap time</div>
+                <div>Sector 1</div>
+                <div>Sector 2</div>
+                <div>Sector 3</div>
+              </div>
               {driver.laps.race.map((lap, i) => (
                 <div className={i % 2 !== 0 ? "driver-stats" : "driver-stats-alt"}>
                   <div>{"lap " + lap.lap_number}</div>
