@@ -1,0 +1,29 @@
+.form-title {
+  color: white;
+}
+
+.form-text {
+  /* background: blue; */
+  padding: 0.2rem 0.5rem;
+  font-size: 1.2em;
+}
+
+.form-label {
+  color: white;
+}
+
+.form-submit {
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  background: rgb(79, 121, 198);
+  padding: 0.5rem 0.1rem;
+  border-radius: 0.4rem;
+  width: 5rem;
+}
+
+.form-submit:hover {
+  background: rgb(66, 97, 154);
+}

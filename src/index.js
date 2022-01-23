@@ -15,6 +15,8 @@ import Races from "./routes/races";
 import Race from "./routes/race";
 import ResultsQualifying from './routes/ResultsQualifying';
 import User from './routes/user';
+import Login from './routes/users/Login';
+import Signup from './routes/users/Signup';
 
 const rootElement = document.getElementById("root");
 render(
@@ -27,6 +29,8 @@ render(
       <Route path="races/:id" element={<Race />} />
       <Route path="races" element={<Races />} />
       <Route path="users/:id" element={<User />} />
+      <Route path="users/login" element={<Login />} />
+      <Route path="users/signup" element={<Signup />} />
     </Routes>
   </BrowserRouter>,
   rootElement

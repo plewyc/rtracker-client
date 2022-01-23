@@ -13,12 +13,18 @@ export default function Races() {
 
   const { id } = useParams()
 
+  const apiHost = () => {
+    const host = process.env.NODE_ENV === 'production' ?  "https://rf2tracker.herokuapp.com" : "http://localhost:3000";
+    return host;
+  }
+
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this race?")) {
-      fetch('https://rf2tracker.herokuapp.com/races/' + id, {
+      fetch(`${apiHost()}/races/${id}`, {
         method: 'DELETE',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('rtracker-jwt-token')}`
         }
       })
       .then(() => navigate("/races"))
@@ -50,7 +56,7 @@ export default function Races() {
     const ai_aggression = document.getElementById("ai-aggression-field").value;
     const ai_limiter = document.getElementById("ai-limiter-field").value;
 
-    fetch('https://rf2tracker.herokuapp.com/races/' + id, {
+    fetch(`${apiHost()}/races/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -67,10 +73,11 @@ export default function Races() {
   }
 
   useEffect(() => {
-    fetch('https://rf2tracker.herokuapp.com/races/' + id)
+    fetch(`${apiHost()}/races/${id}`)
     .then(res => res.json())
     .then(res => {
       setRace(res);
+      console.log(res);
       setIsLoading(false);
     });
   }, [id]);

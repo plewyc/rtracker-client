@@ -4,27 +4,46 @@ import { useParams, useNavigate } from 'react-router-dom';
 export default function User() {
   const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [statusCode, setStatusCode] = useState();
   const navigate = useNavigate();
 
   const { id } = useParams()
 
+  const apiHost = () => {
+    const host = process.env.NODE_ENV === 'production' ?  "https://rf2tracker.herokuapp.com" : "http://localhost:3000";
+    return host;
+  }
+
   useEffect(() => {
-    fetch('https://rf2tracker.herokuapp.com/users/' + id)
-    .then(res => res.json())
+    const token = localStorage.getItem('rtracker-jwt-token');
+
+    fetch(`${apiHost()}/users/${id}`, {
+      headers: {
+        "Authorization": `bearer ${token}`
+      }
+    })
     .then(res => {
-      setUser(res);
+      setStatusCode(res.status);
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        return null;
+      }
+    })
+    .then(res => {
+      if (res !== null) {
+        setUser(res.user);
+      }
       setIsLoading(false);
-      console.log(res);
     });
   }, [id]);
 
+  const loading = () => {
+    return <div>Loading.. please wait!</div>;
+  }
 
-  return (
-    <div>
-      { isLoading &&
-      <div>Loading.. please wait!</div>
-      }
-      { !isLoading &&
+  const profile = () => {
+    return (
       <div>
         <h1>{user.username}</h1>
         <div>
@@ -36,7 +55,18 @@ export default function User() {
           {user.favorite_vehicles.map((vehicle, index) => <p>{index + 1} - {vehicle[0]}</p>)}
         </div>
       </div>
-      }
-    </div>
-  )
+    )
+  }
+
+  const unauthorized = () => {
+    return <h1>Unauthorized</h1>
+  }
+
+  if (isLoading) {
+    return loading();
+  } else if (statusCode !== 200) {
+    return unauthorized();
+  } else {
+    return profile();
+  }
 }

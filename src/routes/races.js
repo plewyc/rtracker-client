@@ -3,8 +3,13 @@ import { useState, useEffect } from "react";
 export default function Races() {
   const [races, setRaces] = useState([]);
 
+  const apiHost = () => {
+    const host = process.env.NODE_ENV === 'production' ?  "https://rf2tracker.herokuapp.com" : "http://localhost:3000";
+    return host;
+  }
+
   useEffect(() => {
-    fetch('https://rf2tracker.herokuapp.com/races')
+    fetch(`${apiHost()}/races`)
     .then(res => res.json())
     .then(res => setRaces(res));
   }, []);
