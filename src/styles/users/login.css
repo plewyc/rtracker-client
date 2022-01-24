@@ -1,11 +1,40 @@
+.login-container {
+  background: white;
+  width: 30rem;
+  height: 25rem;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.sign-up-text {
+  color: gray;
+  text-align: center;
+}
+
 .form-title {
-  color: white;
+  padding-top: 2rem;
+  color: black;
+  text-align: center;
 }
 
 .form-text {
-  /* background: blue; */
-  padding: 0.2rem 0.5rem;
+  display: block;
+  margin: 0 auto;
+  padding: 0.4rem 0.6rem;
   font-size: 1.2em;
+  border-radius: 0.3rem;
+  border: none;
+  background-color: rgb(240, 240, 240);
+}
+
+.form-text::placeholder {
+  color: rgb(179, 179, 179);
+}
+
+.form-text:focus {
+  background-color: white;
+  border: 2px solid rgb(203, 203, 203);
 }
 
 .form-label {
@@ -13,6 +42,8 @@
 }
 
 .form-submit {
+  display: block;
+  margin: 1rem auto;
   cursor: pointer;
   color: white;
   font-weight: bold;

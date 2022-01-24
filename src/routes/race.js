@@ -5,6 +5,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as V from 'victory';
 import { VictoryChart, VictoryLine, VictoryAxis, VictoryBar } from 'victory';
+import GraphGapToLeader from "../components/GraphGapToLeader";
+import GraphPosistion from "../components/GraphPosition";
+import Navbar from "../components/navbar";
 
 export default function Races() {
   const [race, setRace] = useState([]);
@@ -83,12 +86,14 @@ export default function Races() {
   }, [id]);
 
   return (
-    <div className="container">
+    <div>
       { isLoading &&
       <div>Loading.. please wait!</div>
       }
       { !isLoading &&
-        <div>
+      <div>
+        <Navbar />
+        <div className="container">
           <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
             <div>
               <div style={styles.trackName}>{race.track_name}</div>
@@ -146,35 +151,9 @@ export default function Races() {
               {/* {driver.laps.map(lap => (
                 <p key={lap.id}>({lap.session_type}) lap {lap.lap_number}: {lap.lap_time}s</p>
               ))} */}
-                        <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", padding: "1rem"}}>
-          <VictoryChart>
-          <VictoryAxis
-          label="Time (s)"
-          style={{axisLabel: {padding: 30, fill: "white"}, ticks: {stroke: "grey", size: 5}, axis: { stroke: "white"}, tickLabels: { fill: "white"}}}
-        />
-         <VictoryAxis
-         dependentAxis
-         label="Gap to leader"
-         minDomain={0}
-          style={{axisLabel: {padding: 38, fill: "white"}, axis: { stroke: "white"}, tickLabels: { fill: "white"}, ticks: {stroke: "grey", size: 5}}}
-        />
-            <VictoryLine interpolation="natural" style={{data: { stroke: "#c43a31" }}} data={driver.timed_statistics} x="time" y="gap_to_leader" />
-          </VictoryChart>
-
-          <VictoryChart>
-          <VictoryAxis
-          style={{axisLabel: {fill: "white", padding: 30}, axis: { stroke: "white"}, tickLabels: {fill: "white"}, ticks: {stroke: "grey", size: 5}}} label="Time (s)"
-        />
-         <VictoryAxis
-         dependentAxis
-         invertAxis
-         label="Position"
-         domain={[1, race.num_opponents + 1]}
-         tickValues={[...Array(race.num_opponents + 1).keys()].map(i => i % 2 === 0 ? i + 1 : null)}
-          style={{axisLabel: {fill: "white", padding: 38}, axis: { stroke: "white"}, tickLabels: { fill: "white" }, ticks: {stroke: "grey", size: 5} } }
-        />
-            <VictoryLine style={{data: { stroke: "#c43a31" }}} data={driver.timed_statistics} x="time" y="race_position" />
-          </VictoryChart>
+          <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", padding: "1rem"}}>
+          <GraphGapToLeader timed_statistics={driver.timed_statistics} />
+          <GraphPosistion position_data={driver.timed_statistics} num_opponents={race.num_opponents} />
             </div>
               <div className={"driver-stats-alt"}>
                 <div>Lap #</div>
@@ -184,7 +163,7 @@ export default function Races() {
                 <div>Sector 3</div>
               </div>
               {driver.laps.race.map((lap, i) => (
-                <div className={i % 2 !== 0 ? "driver-stats" : "driver-stats-alt"}>
+                <div className={i % 2 !== 0 ? "driver-stats-alt" : "driver-stats"}>
                   <div>{"lap " + lap.lap_number}</div>
                   <div>{Number(lap.lap_time).toFixed(3) + "s"}</div>
                   <div>{Number(lap.sector_1).toFixed(3) + "s"}</div>
@@ -200,6 +179,7 @@ export default function Races() {
           <div style={{paddingTop: "1rem"}}>
             <div style={styles.deleteBtn} onClick={handleDelete}>Delete</div>
           </div>
+        </div>
         </div>
       }
     </div>

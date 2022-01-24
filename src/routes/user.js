@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
+import Navbar from "../components/navbar";
+import "../styles/users/user.css";
 
 export default function User() {
   const [user, setUser] = useState();
@@ -39,27 +41,40 @@ export default function User() {
   }, [id]);
 
   const loading = () => {
-    return <div>Loading.. please wait!</div>;
+    return (
+      <div>
+        <Navbar />
+        Loading.. please wait!
+      </div>
+    );
   }
 
   const profile = () => {
     return (
       <div>
-        <h1>{user.username}</h1>
-        <div>
-          <h2>Favorite tracks</h2>
-          {user.favorite_tracks.map((track, index) => <p>{index + 1} - {track[0]}</p>)}
-        </div>
-        <div>
-          <h2>Favorite vehicles</h2>
-          {user.favorite_vehicles.map((vehicle, index) => <p>{index + 1} - {vehicle[0]}</p>)}
+        <Navbar />
+        <div className="user-container">
+          <h1>{user.username}</h1>
+          <div>
+            <h2>Favorite tracks</h2>
+            {user.favorite_tracks.map((track, index) => <p>{index + 1} - {track[0]}</p>)}
+          </div>
+          <div>
+            <h2>Favorite vehicles</h2>
+            {user.favorite_vehicles.map((vehicle, index) => <p>{index + 1} - {vehicle[0]}</p>)}
+          </div>
         </div>
       </div>
     )
   }
 
   const unauthorized = () => {
-    return <h1>Unauthorized</h1>
+    return (
+      <div>
+        <Navbar />
+        <h1 style={{color: "white", textAlign: "center"}}>This user has a private profile</h1>
+      </div>
+    );
   }
 
   if (isLoading) {

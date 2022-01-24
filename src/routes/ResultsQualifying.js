@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
+import Navbar from "../components/navbar";
 import '../styles/qualifying.css';
 
 export default function ResultsQualifying() {
@@ -29,12 +30,14 @@ export default function ResultsQualifying() {
   }
 
   return (
-    <div className="container">
+    <div>
       { isLoading &&
       <div>Loading.. please wait!</div>
       }
       { !isLoading &&
         <div>
+          <Navbar />
+          <div className="container">
           <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
             <div>
               <div className="track-name">{race.track_name}</div>
@@ -92,6 +95,7 @@ export default function ResultsQualifying() {
             </div>
             </div>
           ))}
+        </div>
         </div>
       }
     </div>

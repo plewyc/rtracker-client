@@ -17,12 +17,13 @@ import ResultsQualifying from './routes/ResultsQualifying';
 import User from './routes/user';
 import Login from './routes/users/Login';
 import Signup from './routes/users/Signup';
+import RTracker from './routes/rTracker';
 
 const rootElement = document.getElementById("root");
 render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Races />} />
+      <Route path="/" element={<RTracker />} />
       <Route path="expenses" element={<Expenses />} />
       <Route path="invoices" element={<Invoices />} />
       <Route path="races/:id/qualifying" element={<ResultsQualifying />} />

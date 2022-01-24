@@ -1,0 +1,51 @@
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+}
+
+.nav-group {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+  color: rgb(187, 187, 187);
+}
+
+.nav-btn-primary {
+  color: white;
+  cursor: pointer;
+  background: green;
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.3rem;
+  margin: 0 0.3rem;
+}
+
+.nav-btn-primary:hover {
+  background: rgb(0, 87, 0);
+}
+
+.nav-btn {
+  color: white;
+  cursor: pointer;
+  background: rgb(0, 128, 119);
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.3rem;
+  margin: 0 0.3rem;
+}
+
+.nav-btn:hover {
+  background: rgb(0, 77, 72);
+}
