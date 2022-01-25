@@ -38,17 +38,20 @@ export default function Login() {
 
   return (
     <>
-    <div className="container-auth">
-      <div className="login-container">
-        <div>
-          <h1 className="form-title">Login</h1>
-          <p className="sign-up-text">No account yet? <a href="/users/signup">Sign up</a></p>
-          <div className="form-container">
-            <div className="form-label">Username</div>
-            <input id="login-username" className="form-text" type="text" placeholder="Username" />
-            <div className="form-label">Password</div>
-            <input id="login-password" className="form-text" type="password" placeholder="Password" />
-            <div className="form-submit" onClick={() => handleLogin()}>Login</div>
+    <div className="img-background">
+      <div className="container-auth">
+      <Navbar />
+      <div style={{height: "70%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+        <div className="login-container">
+          <div style={{marginTop: "2.2rem"}}>
+            <h1 className="form-title">Sign in</h1>
+            <p className="sign-up-text">Don't have an account yet? <a href="/users/signup">Sign in</a></p>
+            <div className="form-container">
+              <input id="login-username" className="form-text" type="text" placeholder="Username" />
+              <input id="login-password" className="form-text" type="password" placeholder="Password" />
+              <div className="form-submit" onClick={() => handleLogin()}>Sign in</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

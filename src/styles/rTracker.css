@@ -5,6 +5,8 @@
   background-image: url("../../public/background2.jpeg");
   height: 100vh;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .home-container {

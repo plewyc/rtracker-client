@@ -35,7 +35,7 @@ export default function ResultsQualifying() {
       <div>Loading.. please wait!</div>
       }
       { !isLoading &&
-        <div>
+        <div style={{background: "#1d1f26"}}>
           <Navbar />
           <div className="container">
           <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>

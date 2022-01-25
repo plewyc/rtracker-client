@@ -71,3 +71,23 @@
   background-color: white;
   color: rgb(60, 60, 60)
 }
+
+.log-out-btn {
+  margin-left: 0.7rem;
+  color: white;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.2em;
+  line-height: 28px;
+  border: 1.5px solid white;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.3rem;
+}
+
+.log-out-btn:hover {
+  cursor: pointer;
+  background-color: rgb(210, 45, 45);
+  border: 1.5px solid rgba(0, 0, 0, 0);
+  color: rgb(255, 255, 255)
+}

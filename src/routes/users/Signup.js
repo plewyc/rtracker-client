@@ -1,6 +1,7 @@
 import "../../styles/users/login.css";
 import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../../components/navbar";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -37,20 +38,22 @@ export default function Signup() {
 
   return (
     <>
-    <div className="container-auth">
-      <div className="login-container">
-        <div>
-      <h1 className="form-title">Sign up</h1>
-      <p className="sign-up-text">Already have an account? <a href="/users/login">Sign in</a></p>
-      <div className="form-container">
-        <div className="form-label">Username</div>
-        <input id="signup-username" className="form-text" type="text" placeholder="Username" />
-        <div className="form-label">Password</div>
-        <input id="signup-password" className="form-text" type="password" placeholder="Password" />
-        <div className="form-label">Password confirmation</div>
-        <input id="signup-password-confirmation" className="form-text" type="password" placeholder="Confirm password" />
-        <div className="form-submit" onClick={() => handleLogin()}>Sign up</div>
-        </div>
+    <div className="img-background">
+      <div className="container-auth">
+      <Navbar />
+      <div style={{height: "70%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+        <div className="login-container">
+          <div style={{marginTop: "0.5rem"}}>
+            <h1 className="form-title">Sign up</h1>
+            <p className="sign-up-text">Already have an account? <a href="/users/login">Sign in</a></p>
+            <div className="form-container">
+              <input id="signup-username" className="form-text" type="text" placeholder="Username" />
+              <input id="signup-password" className="form-text" type="password" placeholder="Password" />
+              <input id="signup-password-confirmation" className="form-text" type="password" placeholder="Confirm password" />
+              <div className="form-submit" onClick={() => handleLogin()}>Sign up</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
