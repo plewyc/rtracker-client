@@ -17,7 +17,7 @@ export default function Races() {
   const { id } = useParams()
 
   const apiHost = () => {
-    const host = "https://rf2tracker.herokuapp.com";
+    const host = "http://localhost:3000";
     return host;
   }
 
@@ -152,8 +152,8 @@ export default function Races() {
                 <p key={lap.id}>({lap.session_type}) lap {lap.lap_number}: {lap.lap_time}s</p>
               ))} */}
           <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", padding: "1rem"}}>
-          <GraphGapToLeader timed_statistics={driver.timed_statistics} />
-          <GraphPosistion position_data={driver.timed_statistics} num_opponents={race.num_opponents} />
+          <GraphGapToLeader timed_statistics={driver.timed_statistics} lapTimeline={driver.lap_timeline} />
+          <GraphPosistion position_data={driver.timed_statistics} num_opponents={race.num_opponents} lapTimeline={driver.lap_timeline} />
             </div>
               <div className={"driver-stats-alt"}>
                 <div>Lap #</div>
