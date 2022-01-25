@@ -14,15 +14,26 @@ export default function Navbar() {
   return (
     <div className="nav-container">
       <div className="nav-group">
-        { isUserLoggedIn ? 
+        { isUserLoggedIn() ? 
           <a className="nav-link" href="/races">
             Races
           </a>
         :
           <a className="nav-link" href="#">
-            Features
+            rf2Tracker
           </a>
         }
+      </div>
+      <div className="nav-group">
+          <a className="nav-link" href="/races">
+            Features
+          </a>
+          <a className="nav-link" href="#">
+            Pricing
+          </a>
+          <a className="nav-link" href="#">
+            Contact
+          </a>
       </div>
       { isUserLoggedIn() ? 
         <div className="nav-group">
@@ -30,8 +41,7 @@ export default function Navbar() {
         </div>
         :
         <div className="nav-group">
-          <div class="nav-btn" onClick={() => navigate("/users/login")}>Log in</div>
-          <div class="nav-btn-primary" onClick={() => navigate("/users/signup")}>Sign up</div>
+          <div class="sign-up-btn" onClick={() => navigate("/users/signup")}>Sign up</div>
         </div>
       }
     </div>

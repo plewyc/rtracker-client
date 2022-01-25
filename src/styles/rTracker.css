@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+.img-back {
+  background: white;
+  background-image: url("../../public/background2.jpeg");
+  height: 100vh;
+  overflow: hidden;
+}
+
+.home-container {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 100vh;
+}
+
+.background-img {
+  position: fixed;
+}
+
+.hero-text-container {
+  position: fixed;
+  top: 21rem;
+  left: 10rem;
+}
+
+.hero-main {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto;
+  font-size: 4em;
+  font-weight: bold;
+  color: white;
+}
+
+.hero-sub {
+  margin: 0;
+  font-family: Roboto;
+  color: white;
+  font-size: 1.4em;
+  margin-bottom: 5rem;
+}
+
+.btn-action {
+  font-family: Roboto;
+  font-weight: 600;
+  color: white;
+  font-size: 1.7em;
+  background-color: #3086EB;
+  display: inline;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+}
+
+.btn-action:hover {
+  cursor: pointer;
+  background-color: #4c8fdc;
+}

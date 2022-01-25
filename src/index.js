@@ -23,7 +23,7 @@ const rootElement = document.getElementById("root");
 render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Signup />} />
+      <Route path="/" element={<RTracker />} />
       <Route path="expenses" element={<Expenses />} />
       <Route path="invoices" element={<Invoices />} />
       <Route path="races/:id/qualifying" element={<ResultsQualifying />} />

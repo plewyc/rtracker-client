@@ -37,7 +37,7 @@ export default function Signup() {
 
   return (
     <>
-    <div style={{height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundImage: `url("https://cdn.cloudflare.steamstatic.com/steam/apps/365960/ss_08014c715e90c851212e829d60dbbba7c5f0fc43.1920x1080.jpg?t=1641889847")`}}>
+    <div className="container-auth">
       <div className="login-container">
         <div>
       <h1 className="form-title">Sign up</h1>
