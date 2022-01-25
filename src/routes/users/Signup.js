@@ -6,7 +6,7 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const apiHost = () => {
-    const host = process.env.NODE_ENV === 'production' ?  "https://rf2tracker.herokuapp.com" : "http://localhost:3000";
+    const host = "https://rf2tracker.herokuapp.com";
     return host;
   }
 
