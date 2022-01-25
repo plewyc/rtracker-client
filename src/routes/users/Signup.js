@@ -11,9 +11,9 @@ export default function Signup() {
   }
 
   const handleLogin = () => {
-    const username = document.getElementById("login-username").value;
-    const password = document.getElementById("login-password").value;
-    const passwordConfirmation = document.getElementById("login-password-confirmation").value;
+    const username = document.getElementById("signup-username").value;
+    const password = document.getElementById("signup-password").value;
+    const passwordConfirmation = document.getElementById("signup-password-confirmation").value;
 
     fetch(`${apiHost()}/users/`, {
       method: 'POST',
@@ -29,7 +29,10 @@ export default function Signup() {
       })
     })
     .then(res => res.json())
-    .then(() => navigate('/races'));
+    .then(res => {
+      localStorage.setItem('rtracker-jwt-token', res.token);
+      navigate(`/users/${res.user_id}`);
+    });
   }
 
   return (
@@ -38,14 +41,14 @@ export default function Signup() {
       <div className="login-container">
         <div>
       <h1 className="form-title">Sign up</h1>
-      <p className="sign-up-text">Already have an account? <a href="/users/signup">Sign in</a></p>
+      <p className="sign-up-text">Already have an account? <a href="/users/login">Sign in</a></p>
       <div className="form-container">
         <div className="form-label">Username</div>
         <input id="signup-username" className="form-text" type="text" placeholder="Username" />
         <div className="form-label">Password</div>
         <input id="signup-password" className="form-text" type="password" placeholder="Password" />
         <div className="form-label">Password confirmation</div>
-        <input id="signup-password-confrimation" className="form-text" type="password" placeholder="Confirm password" />
+        <input id="signup-password-confirmation" className="form-text" type="password" placeholder="Confirm password" />
         <div className="form-submit" onClick={() => handleLogin()}>Sign up</div>
         </div>
         </div>
