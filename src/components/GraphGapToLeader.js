@@ -2,6 +2,26 @@ import * as V from 'victory';
 import { VictoryChart, VictoryLine, VictoryAxis, VictoryBar } from 'victory';
 
 export default function GraphGapToLeader(props) {
+
+  const lapLabels = lapTimeline => {
+    if (lapTimeline === null) {
+      return;
+    }
+
+    return (
+      lapTimeline.slice(0, lapTimeline.length - 1).map((time, index) => (
+        <VictoryAxis
+          key={index}
+          dependentAxis
+          style={{axisLabel: {padding: 5, fill: "rgba(133, 133, 133, 0.2)"}, axis: { stroke: "rgba(133, 133, 133, 0.2)", strokeDasharray: "10"}, tickLabels: { fill: "none"}}}
+          axisValue={time}
+          label={`lap ${index + 2}`}
+          standalone={false}
+        />
+      ))
+    )
+  }
+
   return (
     <VictoryChart>
       <VictoryAxis
@@ -14,16 +34,7 @@ export default function GraphGapToLeader(props) {
         minDomain={0}
         style={{axisLabel: {padding: 38, fill: "white"}, axis: { stroke: "white"}, tickLabels: { fill: "white"}, ticks: {stroke: "grey", size: 5}}}
       />
-      {props.lapTimeline.slice(0, props.lapTimeline.length - 1).map((time, index) => (
-        <VictoryAxis
-          key={index}
-          dependentAxis
-          style={{axisLabel: {padding: 5, fill: "rgba(133, 133, 133, 0.2)"}, axis: { stroke: "rgba(133, 133, 133, 0.2)", strokeDasharray: "10"}, tickLabels: { fill: "none"}}}
-          axisValue={time}
-          label={`lap ${index + 2}`}
-          standalone={false}
-        />
-      ))}
+      {lapLabels(props.lapTimeline)}
       <VictoryLine interpolation="natural" style={{data: { stroke: "#c43a31" }}} data={props.timed_statistics} x="time" y="gap_to_leader" />
     </VictoryChart>
   )
