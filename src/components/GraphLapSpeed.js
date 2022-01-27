@@ -1,8 +1,8 @@
 import * as V from 'victory';
 import { VictoryChart, VictoryLine, VictoryAxis, VictoryBar } from 'victory';
 
-export default function GraphPosistion(props) {
-
+export default function GraphLapSpeed(props) {
+  
   const lapLabels = lapTimeline => {
     if (lapTimeline === null) {
       return;
@@ -23,20 +23,18 @@ export default function GraphPosistion(props) {
   }
 
   return (
-    <VictoryChart>
+    <VictoryChart height={200} padding={{left: 75, top: 50, bottom: 50, right: 50}}>
       <VictoryAxis
-        style={{axisLabel: {fill: "white", padding: 30}, axis: { stroke: "white"}, tickLabels: {fill: "white"}, ticks: {stroke: "grey", size: 5}}} label="Time (s)"
+        style={{axisLabel: {fill: "white", padding: 30, fontSize: 8 }, axis: { stroke: "white"}, tickLabels: {fill: "white", fontSize: 8 }, ticks: {stroke: "grey", size: 5}}} label="Time (s)"
       />
       <VictoryAxis
         dependentAxis
-        invertAxis
-        label="Position"
-        domain={[1, props.num_opponents + 1]}
-        tickValues={[...Array(props.num_opponents + 1).keys()].map(i => i % 2 === 0 ? i + 1 : null)}
-        style={{axisLabel: {fill: "white", padding: 38}, axis: { stroke: "white"}, tickLabels: { fill: "white" }, ticks: {stroke: "grey", size: 5} } }
+        label="Speed (m/s)"
+        domain={[0, null]}
+        style={{axisLabel: {fill: "white", padding: 38, fontSize: 8}, axis: { stroke: "white"}, tickLabels: { fill: "white", fontSize: 8 }, ticks: {stroke: "grey", size: 5} } }
       />
       {lapLabels(props.lapTimeline)}
-      <VictoryLine style={{data: { stroke: "#c43a31" }}} data={props.position_data} x="time" y="position" />
+      <VictoryLine style={{data: { strokeWidth: 1, stroke: "#c43a31" }}} data={props.speed_data} x="time" y="speed" />
     </VictoryChart>
   )
 }

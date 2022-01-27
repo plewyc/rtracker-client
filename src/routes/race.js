@@ -8,6 +8,7 @@ import { VictoryChart, VictoryLine, VictoryAxis, VictoryBar } from 'victory';
 import GraphGapToLeader from "../components/GraphGapToLeader";
 import GraphPosistion from "../components/GraphPosition";
 import Navbar from "../components/navbar";
+import GraphLapSpeed from "../components/GraphLapSpeed";
 
 export default function Races() {
   const [race, setRace] = useState([]);
@@ -17,7 +18,7 @@ export default function Races() {
   const { id } = useParams()
 
   const apiHost = () => {
-    const host = "https://rf2tracker.herokuapp.com";
+    const host = "http://localhost:3000/";
     return host;
   }
 
@@ -144,7 +145,7 @@ export default function Races() {
                 <p>{driver.race_pos}</p>
                 <div>{driver.name}</div>
                 <div>{driver.vehicle}</div>
-                <div>{i !== 0 ? "+" + Number(driver.timed_statistics[driver.timed_statistics.length - 1].gap_to_leader).toFixed(3) + "s" : null}</div>
+                <div>{i !== 0 ? "+" + Number(driver.scoring_details[driver.scoring_details.length - 1].gap_to_leader).toFixed(3) + "s" : null}</div>
                 <div>{Number(driver.fastest_race_lap.lap_time).toFixed(3)}s</div>
               </div>
               <div id={"driver-" + driver.id} style={styles.driverDetails}>
@@ -152,8 +153,13 @@ export default function Races() {
                 <p key={lap.id}>({lap.session_type}) lap {lap.lap_number}: {lap.lap_time}s</p>
               ))} */}
           <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", padding: "1rem"}}>
-          <GraphGapToLeader timed_statistics={driver.timed_statistics} lapTimeline={driver.lap_timeline} />
-          <GraphPosistion position_data={driver.timed_statistics} num_opponents={race.num_opponents} lapTimeline={driver.lap_timeline} />
+          <GraphGapToLeader timed_statistics={driver.scoring_details} lapTimeline={driver.lap_timeline} />
+          <GraphPosistion position_data={driver.scoring_details} num_opponents={race.num_opponents} lapTimeline={driver.lap_timeline} />
+          { driver.is_player &&
+            <div>
+              <GraphLapSpeed speed_data={driver.telemetry_details} lapTimeline={driver.lap_timeline} />
+            </div>
+          }
             </div>
               <div className={"driver-stats-alt"}>
                 <div>Lap #</div>
