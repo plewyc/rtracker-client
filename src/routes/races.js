@@ -4,7 +4,7 @@ export default function Races() {
   const [races, setRaces] = useState([]);
 
   const apiHost = () => {
-    const host ="https://api.rtracker.app";
+    const host ="https://rf2tracker.herokuapp.com";
     return host;
   }
 
