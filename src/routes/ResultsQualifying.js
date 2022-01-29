@@ -11,7 +11,7 @@ export default function ResultsQualifying() {
   const { id } = useParams()
 
   useEffect(() => {
-    fetch('https://rf2tracker.herokuapp.com/races/' + id + '/qualifying')
+    fetch('https://api.rtracker.app/' + id + '/qualifying')
     .then(res => res.json())
     .then(res => {
       setRace(res);

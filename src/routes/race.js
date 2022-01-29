@@ -18,7 +18,7 @@ export default function Races() {
   const { id } = useParams()
 
   const apiHost = () => {
-    const host = "https://rf2tracker.herokuapp.com/";
+    const host = "https://api.rtracker.app/";
     return host;
   }
 
