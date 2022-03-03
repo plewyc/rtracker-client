@@ -15,8 +15,7 @@ export default function Races() {
   const { id } = useParams()
 
   const apiHost = () => {
-    const host = "https://rf2tracker.herokuapp.com";
-    return host;
+    return process.env.NODE_ENV === "production" ? process.env.PRODUCTION_URL : process.env.DEVELOPMENT_URL;
   }
 
   const handleDelete = () => {

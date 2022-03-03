@@ -10,8 +10,12 @@ export default function ResultsQualifying() {
 
   const { id } = useParams()
 
+  const apiHost = () => {
+    return process.env.NODE_ENV === "production" ? process.env.REACT_APP_PRODUCTION_URL : process.env.REACT_APP_DEVELOPMENT_URL;
+  }
+
   useEffect(() => {
-    fetch('https://rf2tracker.herokuapp.com/' + id + '/qualifying')
+    fetch(apiHost() + id + '/qualifying')
     .then(res => res.json())
     .then(res => {
       setRace(res);

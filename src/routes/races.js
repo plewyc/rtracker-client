@@ -4,8 +4,7 @@ export default function Races() {
   const [races, setRaces] = useState([]);
 
   const apiHost = () => {
-    const host ="https://rf2tracker.herokuapp.com";
-    return host;
+    return process.env.NODE_ENV === "production" ? process.env.REACT_APP_PRODUCTION_URL : process.env.REACT_APP_DEVELOPMENT_URL;
   }
 
   useEffect(() => {
