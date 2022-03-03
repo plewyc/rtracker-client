@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import { VictoryChart, VictoryLine, VictoryAxis } from 'victory';
 
 export default function GraphPosition(props) {
@@ -41,9 +40,3 @@ export default function GraphPosition(props) {
     </VictoryChart>
   )
 }
-
-GraphPosition.propTypes = {
-  position_data: PropTypes.array,
-  num_opponents: PropTypes.number,
-  lapTimeline: PropTypes.array
-};
