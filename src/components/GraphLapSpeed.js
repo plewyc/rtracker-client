@@ -1,5 +1,6 @@
-import * as V from 'victory';
-import { VictoryChart, VictoryLine, VictoryAxis, VictoryBar } from 'victory';
+import React from 'react';
+import PropTypes from "prop-types";
+import { VictoryChart, VictoryLine, VictoryAxis } from 'victory';
 
 export default function GraphLapSpeed(props) {
   
@@ -38,3 +39,8 @@ export default function GraphLapSpeed(props) {
     </VictoryChart>
   )
 }
+
+GraphLapSpeed.propTypes = {
+  speed_data: PropTypes.array,
+  lapTimeline: PropTypes.array
+};
