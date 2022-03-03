@@ -1,5 +1,4 @@
 import "../../styles/users/login.css";
-import {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../../components/navbar";
 
@@ -45,7 +44,7 @@ export default function Login() {
         <div className="login-container">
           <div style={{marginTop: "2.2rem"}}>
             <h1 className="form-title">Sign in</h1>
-            <p className="sign-up-text">Don't have an account yet? <a href="/users/signup">Sign in</a></p>
+            <p className="sign-up-text">Don&#39t have an account yet? <a href="/users/signup">Sign in</a></p>
             <div className="form-container">
               <input id="login-username" className="form-text" type="text" placeholder="Username" />
               <input id="login-password" className="form-text" type="password" placeholder="Password" />

@@ -43,7 +43,7 @@ export default function ResultsQualifying() {
               <div className="track-name">{race.track_name}</div>
               <div className="vehicle-name">{race.drivers[0].vehicle}</div>
             </div>
-            <div class="finish-date">{race.finish_date}</div>
+            <div className="finish-date">{race.finish_date}</div>
           </div>
           <div style={{paddingTop: "1rem", marginBottom: "2rem"}}>
             <div className="race-btn" onClick={() => navigate("/races/" + id)}>Overview</div>
@@ -62,8 +62,8 @@ export default function ResultsQualifying() {
             <p>Sector 3</p>
           </div>
           {race.drivers.map((driver, i) => (
-            <div>
             <div key={"driver-" + driver.id}>
+            <div>
               <div className="driver-summary" onClick={() => toggleDetails(driver.id)}>
                 <p>{i + 1}</p>
                 <div>
@@ -82,7 +82,7 @@ export default function ResultsQualifying() {
                 <p key={lap.id}>({lap.session_type}) lap {lap.lap_number}: {lap.lap_time}s</p>
               ))} */}
               {driver.laps.qualifying.map((lap, index) => (
-                <div className={index % 2 === 0 ? "qualifying-details" : "qualifying-details-alt"}>
+                <div key={index} className={index % 2 === 0 ? "qualifying-details" : "qualifying-details-alt"}>
                   <p>lap {lap.lap_number}</p>
                   <p></p>
                   {lap.lap_time === driver.fastest_qualifying_lap.lap_time ? <p></p> :  <p>+{Number(lap.lap_time - driver.fastest_qualifying_lap.lap_time).toFixed(3)}s</p>}
@@ -100,28 +100,4 @@ export default function ResultsQualifying() {
       }
     </div>
   );
-}
-
-const styles = {
-  deleteBtn: {
-    padding: "0.3rem 0.6rem",
-    background: "red",
-    color: "white",
-    display: "inline",
-    borderRadius: "0.3rem"
-  },
-  // driverSummary: {
-  //   border: "1px solid black",
-  //   borderRadius: "0.3rem",
-  //   marginBottom: "0.5rem",
-  //   padding: "0.3rem 0.7rem",
-  // },
-
-  position: {
-    border: "1px solid black",
-    borderRadius: "50%",
-    width: "2rem",
-    height: "2rem",
-    textAlign: "center"
-  }
 }

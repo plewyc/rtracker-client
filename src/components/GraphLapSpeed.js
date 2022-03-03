@@ -1,4 +1,3 @@
-import React from 'react';
 import { VictoryChart, VictoryLine, VictoryAxis } from 'victory';
 
 export default function GraphLapSpeed(props) {

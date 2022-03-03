@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Navbar from "../components/navbar";
 import "../styles/users/user.css";
 
@@ -7,7 +7,6 @@ export default function User() {
   const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [statusCode, setStatusCode] = useState();
-  const navigate = useNavigate();
 
   const { id } = useParams()
 
@@ -57,11 +56,11 @@ export default function User() {
           <h1>{user.username}</h1>
           <div>
             <h2>Favorite tracks</h2>
-            {user.favorite_tracks.map((track, index) => <p>{index + 1} - {track[0]}</p>)}
+            {user.favorite_tracks.map((track, index) => <p key={index}>{index + 1} - {track[0]}</p>)}
           </div>
           <div>
             <h2>Favorite vehicles</h2>
-            {user.favorite_vehicles.map((vehicle, index) => <p>{index + 1} - {vehicle[0]}</p>)}
+            {user.favorite_vehicles.map((vehicle, index) => <p key={index}>{index + 1} - {vehicle[0]}</p>)}
           </div>
         </div>
       </div>

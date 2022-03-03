@@ -41,16 +41,16 @@ export default function Races() {
     }
   }
 
-  const showUpdateForm = () => {
-    let form = document.getElementById("ai-update-form");
-    if (form.style.display === "none") {
-      document.getElementById("ai-attributes").style.display = "none";
-      document.getElementById("ai-update-form").style.display = "block";
-    } else {
-      document.getElementById("ai-attributes").style.display = "block";
-      document.getElementById("ai-update-form").style.display = "none";
-    }
-  }
+  // const showUpdateForm = () => {
+  //   let form = document.getElementById("ai-update-form");
+  //   if (form.style.display === "none") {
+  //     document.getElementById("ai-attributes").style.display = "none";
+  //     document.getElementById("ai-update-form").style.display = "block";
+  //   } else {
+  //     document.getElementById("ai-attributes").style.display = "block";
+  //     document.getElementById("ai-update-form").style.display = "none";
+  //   }
+  // }
 
   const updateAiAttributes = () => {
     const ai_skill = document.getElementById("ai-skill-field").value;
@@ -166,7 +166,7 @@ export default function Races() {
                 <div>Sector 3</div>
               </div>
               {driver.laps.race.map((lap, i) => (
-                <div className={i % 2 !== 0 ? "driver-stats-alt" : "driver-stats"}>
+                <div key={i} className={i % 2 !== 0 ? "driver-stats-alt" : "driver-stats"}>
                   <div>{"lap " + lap.lap_number}</div>
                   <div>{Number(lap.lap_time).toFixed(3) + "s"}</div>
                   <div>{Number(lap.sector_1).toFixed(3) + "s"}</div>

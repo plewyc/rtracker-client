@@ -28,7 +28,7 @@ export default function Races() {
   </thead>
   <tbody>
     { races.map(race => (
-    <tr>
+    <tr key={race.id}>
       <td style={{padding: "0 0.5rem"}}>{race.track_name}</td>
       <td style={{padding: "0 0.5rem"}}>{race.vehicle}</td>
       <td style={{padding: "0 0.5rem"}}>{race.laps}</td>
