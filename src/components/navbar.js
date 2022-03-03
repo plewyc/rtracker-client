@@ -1,5 +1,5 @@
 import "../styles/components/navbar.css";
-import { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { isUserLoggedIn } from '../helpers/authentication';
 
@@ -35,12 +35,12 @@ export default function Navbar() {
       </div>
       { isUserLoggedIn() ?
         <div className="nav-group">
-          <div class="sign-up-btn" onClick={() => navigate("/races")}>My races</div>
-          <div class="log-out-btn" onClick={() => logOut()}>Log out</div>
+          <div className="sign-up-btn" onClick={() => navigate("/races")}>My races</div>
+          <div className="log-out-btn" onClick={() => logOut()}>Log out</div>
         </div>
         :
         <div className="nav-group">
-          <div class="sign-up-btn" onClick={() => navigate("/users/signup")}>Sign up</div>
+          <div className="sign-up-btn" onClick={() => navigate("/users/signup")}>Sign up</div>
         </div>
       }
     </div>

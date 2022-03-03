@@ -1,7 +1,8 @@
-import * as V from 'victory';
-import { VictoryChart, VictoryLine, VictoryAxis, VictoryBar } from 'victory';
+import React from 'react';
+import PropTypes from "prop-types";
+import { VictoryChart, VictoryLine, VictoryAxis } from 'victory';
 
-export default function GraphPosistion(props) {
+export default function GraphPosition(props) {
 
   const lapLabels = lapTimeline => {
     if (lapTimeline === null) {
@@ -40,3 +41,9 @@ export default function GraphPosistion(props) {
     </VictoryChart>
   )
 }
+
+GraphPosition.propTypes = {
+  position_data: PropTypes.array,
+  num_opponents: PropTypes.number,
+  lapTimeline: PropTypes.array
+};
