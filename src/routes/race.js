@@ -15,7 +15,7 @@ export default function Races() {
   const { id } = useParams()
 
   const apiHost = () => {
-    return process.env.NODE_ENV === "production" ? process.env.PRODUCTION_URL : process.env.DEVELOPMENT_URL;
+    return process.env.NODE_ENV === "production" ? process.env.REACT_APP_PRODUCTION_URL : process.env.REACT_APP_DEVELOPMENT_URL;
   }
 
   const handleDelete = () => {
@@ -141,8 +141,9 @@ export default function Races() {
                 <p>{driver.race_pos}</p>
                 <div>{driver.name}</div>
                 <div>{driver.vehicle}</div>
-                <div>{i !== 0 ? "+" + Number(driver.scoring_details[driver.scoring_details.length - 1].gap_to_leader).toFixed(3) + "s" : null}</div>
-                <div>{Number(driver.fastest_race_lap.lap_time).toFixed(3)}s</div>
+                <div>{i}</div>
+                {/* <div>{i !== 0 ? "+" + Number(driver.scoring_details[driver.scoring_details.length - 1].gap_to_leader).toFixed(3) + "s" : null}</div> */}
+                <div>{driver.fastest_race_lap !== null ? Number(driver.fastest_race_lap.lap_time).toFixed(3) : 0}s</div>
               </div>
               <div id={"driver-" + driver.id} style={styles.driverDetails}>
               {/* {driver.laps.map(lap => (
@@ -151,7 +152,7 @@ export default function Races() {
           <div style={{display: "grid", gridTemplateColumns: "1fr 1fr", padding: "1rem"}}>
           <GraphGapToLeader timed_statistics={driver.scoring_details} lapTimeline={driver.lap_timeline} />
           <GraphPosition position_data={driver.scoring_details} num_opponents={race.num_opponents} lapTimeline={driver.lap_timeline} />
-          { driver.is_player &&
+          { driver.is_player && driver.lap_timeline !== null &&
             <div>
               <GraphLapSpeed speed_data={driver.telemetry_details} lapTimeline={driver.lap_timeline} />
             </div>
