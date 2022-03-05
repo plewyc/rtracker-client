@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import Expenses from "./routes/expenses";
 import Invoices from "./routes/invoices";
-import Races from "./routes/races";
+import Races from "./routes/races.tsx";
 import Race from "./routes/race";
 import ResultsQualifying from './routes/ResultsQualifying';
 import User from './routes/user';
