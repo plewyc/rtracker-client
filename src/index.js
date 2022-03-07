@@ -8,8 +8,6 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import Expenses from "./routes/expenses";
-import Invoices from "./routes/invoices";
 import Races from "./routes/races.tsx";
 import Race from "./routes/race";
 import ResultsQualifying from './routes/ResultsQualifying';
@@ -23,8 +21,6 @@ render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<RTracker />} />
-      <Route path="expenses" element={<Expenses />} />
-      <Route path="invoices" element={<Invoices />} />
       <Route path="races/:id/qualifying" element={<ResultsQualifying />} />
       <Route path="races/:id" element={<Race />} />
       <Route path="races" element={<Races />} />
