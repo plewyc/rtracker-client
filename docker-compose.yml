@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  app:
+    image: node:17-alpine3.14
+    command: sh -c "npm install -g serve && npm install && npm run build && serve -s build"
+    ports:
+      - 3001:3000
+    working_dir: /rtracker-client
+    volumes:
+      - ./:/rtracker-client
+    environment:
+      REACT_APP_PRODUCTION_URL: https://rf2tracker.herokuapp.com
+      REACT_APP_DEVELOPMENT_URL: http://localhost:3000
