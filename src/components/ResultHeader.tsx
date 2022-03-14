@@ -21,8 +21,16 @@ export default function ResultsHeader({ race }) {
     }
   }
 
+  const player = drivers => {
+    for (let i = 0; i < drivers.length; i++) {
+      if (drivers[i].is_player) {
+        return drivers[i];
+      }
+    }
+  }
+
   const raceLaps = laps => {
-    laps === 1 ? `${laps} lap` : `${laps} laps`;
+    return laps === 1 ? `${laps} lap` : `${laps} laps`;
   }
 
   return (
@@ -34,9 +42,9 @@ export default function ResultsHeader({ race }) {
       <p className="vehicle">{race.drivers[0].vehicle}</p>
       <div className="">
         { race.race_type === "laps" ?
-          <p className="quick-details">{race.drivers[0].race_pos}   |   {raceLaps(race.race_laps)}   |   {numOpponents()}</p>
+          <p className="quick-details">{player(race.drivers).race_pos}   |   {raceLaps(race.race_laps)}   |   {numOpponents()}</p>
         :
-          <p className="quick-details">{race.drivers[0].race_pos}   |   {race.race_duration} minutes {additionalLaps(race.race_additional_laps)}   |   {numOpponents()}</p>
+          <p className="quick-details">{player(race.drivers).race_pos}   |   {race.race_duration} minutes {additionalLaps(race.race_additional_laps)}   |   {numOpponents()}</p>
         }
       </div>
     </div>
