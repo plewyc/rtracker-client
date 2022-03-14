@@ -21,7 +21,7 @@ export default function ResultsRow({ driver, numOpponents }) {
         <p>{driver.race_pos}</p>
         <div>{driver.name}</div>
         <div>{driver.vehicle}</div>
-        <div>{driver.id}</div>
+        <div>{Number(driver.gap_to_leader).toFixed(2)}s</div>
         {/* <div>{i !== 0 ? "+" + Number(driver.scoring_details[driver.scoring_details.length - 1].gap_to_leader).toFixed(3) + "s" : null}</div> */}
         <div>{driver.fastest_race_lap !== null ? Number(driver.fastest_race_lap.lap_time).toFixed(3) : 0}s</div>
       </div>

@@ -42,9 +42,9 @@ export default function ResultsHeader({ race }) {
       <p className="vehicle">{race.drivers[0].vehicle}</p>
       <div className="">
         { race.race_type === "laps" ?
-          <p className="quick-details">{player(race.drivers).race_pos}   |   {raceLaps(race.race_laps)}   |   {numOpponents()}</p>
+          <p className="quick-details">{player(race.drivers).race_pos_ordinalized}   |   {raceLaps(race.race_laps)}   |   {numOpponents()}</p>
         :
-          <p className="quick-details">{player(race.drivers).race_pos}   |   {race.race_duration} minutes {additionalLaps(race.race_additional_laps)}   |   {numOpponents()}</p>
+          <p className="quick-details">{player(race.drivers).race_pos_ordinalized}   |   {race.race_duration} minutes {additionalLaps(race.race_additional_laps)}   |   {numOpponents()}</p>
         }
       </div>
     </div>
