@@ -21,18 +21,22 @@ export default function ResultsHeader({ race }) {
     }
   }
 
+  const raceLaps = laps => {
+    laps === 1 ? `${laps} lap` : `${laps} laps`;
+  }
+
   return (
     <div className="header">
       <div className="flex-between">
-        <h1 className="track">{race.track}</h1>
+        <h1 className="track">{race.track_name}</h1>
         <p>{race.finish_date}</p>
       </div>
       <p className="vehicle">{race.drivers[0].vehicle}</p>
       <div className="">
         { race.race_type === "laps" ?
-          <p className="quick-details">{race.drivers[0].race_pos}   |   {race.race_laps}   |   {numOpponents()}</p>
+          <p className="quick-details">{race.drivers[0].race_pos}   |   {raceLaps(race.race_laps)}   |   {numOpponents()}</p>
         :
-          <p className="quick-details">{race.drivers[0].race_pos}   |   {race.race_duration}{additionalLaps(race.race_additional_laps)}   |   {numOpponents()}</p>
+          <p className="quick-details">{race.drivers[0].race_pos}   |   {race.race_duration} minutes {additionalLaps(race.race_additional_laps)}   |   {numOpponents()}</p>
         }
       </div>
     </div>
