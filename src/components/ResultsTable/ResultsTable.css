@@ -1,0 +1,63 @@
+.table-header {
+  background-color: #98A5FF;
+  color: white;
+  font-weight: bold;
+  border-radius: 0.3rem;
+  margin-top: 2rem;
+  margin-bottom: 0.3rem;
+  padding: 0.75rem 0.7rem;
+  display: grid;
+  grid-template-columns: 5rem 2fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.table-header p {
+  margin: 0;
+}
+
+.table-row {
+  background-color: #D1D7FF;
+  color: black;
+  font-weight: 200;
+  border-radius: 0.3rem;
+  margin-bottom: 0.3rem;
+  padding: 0.75rem 0.7rem;
+  display: grid;
+  grid-template-columns: 5rem 2fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.table-row:hover {
+  background-color: #dde1fa;
+}
+
+.table-row p {
+  margin: 0;
+}
+
+.driver-details {
+  display: none;
+  background-color: #EAEDFF;
+}
+
+.graphs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.driver-stats {
+  display: grid;
+  font-weight: 200;
+  color: black;
+  grid-template-columns: 5rem 1fr 1fr 1fr 1fr;
+  padding: 0.6rem 1rem;
+}
+
+.driver-stats-alt {
+  display: grid;
+  font-weight: 200;
+  grid-template-columns: 5rem 1fr 1fr 1fr 1fr;
+  padding: 0.6rem 1rem;
+  background: #dde1fa;
+  color: black;
+}

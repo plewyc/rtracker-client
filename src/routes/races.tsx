@@ -3,18 +3,14 @@ import { useState, useEffect } from "react";
 export default function Races() {
   const [races, setRaces] = useState([]);
 
-  const apiHost = () => {
-    return process.env.NODE_ENV === "production" ? process.env.REACT_APP_PRODUCTION_URL : process.env.REACT_APP_DEVELOPMENT_URL;
-  }
-
   useEffect(() => {
-    fetch(`${apiHost()}/races`)
+    fetch(`${process.env.REACT_APP_HOST_URL}/races`)
     .then(res => res.json())
     .then(res => setRaces(res));
   }, []);
 
   return (
-<table style={{color: "white"}}>
+<table style={{color: "black"}}>
   <thead>
     <tr>
       <th style={{padding: "0 0.5rem"}}>Circuit</th>

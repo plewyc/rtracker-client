@@ -1,19 +1,59 @@
 import Navbar from "../components/navbar";
 import "../styles/rTracker.css";
+import { useNavigate } from "react-router-dom";
 
 export default function RTracker() {
+  const navigate = useNavigate();
+
   return (
-    <div className="img-back">
-      <div className="home-container">
-        <Navbar />
-        <div className="hero-text-container">
-          <p className="hero-main">The best way to look<br/>back at your races</p>
-          <p className="hero-sub">Easily track your races, stats, and progress</p>
-          <div className="btn-action">Get started</div>
+    <div>
+      <div style={{height: "100vh"}}> 
+        <div style={{width: "85%", margin: "0 auto", maxWidth: "1200px"}}>
+          <Navbar />
+        </div>
+        <div className="hero">
+          <div className="hero-text-container">
+            <p className="hero-text">The ultimate way to track your races</p>
+            <div className="hero-btn" onClick={() => navigate("/users/signup")}>Get started</div>
+            <div style={{height: "5rem"}}></div>
+          </div>
         </div>
       </div>
-      {/* <img className="background-img" src="background2.jpeg" /> */}
-      <h1 style={{color: "white"}}>Track your races</h1>
+      <div className="section-features">
+        <p className="text-features">Features</p>
+        <div className="features-row">
+          <div className="features-item">
+            <div className="features-item-text">
+              <p className="feature-heading">Extensive Data</p>
+              <p className="features-description">An abundance of information available for each race such as position, gap, and fuel level</p>
+            </div>
+          </div>
+          <div className="features-item">
+            <div className="features-item-text">
+              <p className="feature-heading">Generous Graphs</p>
+              <p className="features-description">An abundance of information available for each race such as position, gap, and fuel level</p>
+            </div>
+          </div>
+          <div className="features-item">
+            <div className="features-item-text">
+              <p className="feature-heading">Detailed Diagrams</p>
+              <p className="features-description">An abundance of information available for each race such as position, gap, and fuel level</p>
+            </div>
+          </div>
+          <div className="features-item">
+            <div className="features-item-text">
+              <p className="feature-heading">Alone or Together</p>
+              <p className="features-description">Data is gathered and saved for both singleplayer and multiplayer races.</p>
+            </div>
+          </div>
+          <div className="features-item">
+            <div className="features-item-text">
+              <p className="feature-heading">Build Your Profile</p>
+              <p className="features-description">An abundance of information available for each race such as position, gap, and fuel level</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

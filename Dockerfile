@@ -2,8 +2,7 @@
 FROM node:17-alpine3.14
 WORKDIR /rtracker-client
 COPY . .
+ENV REACT_APP_HOST_URL=http://localhost:3000
 RUN npm install
-RUN npm run build
-RUN npm i -g serve
-CMD ["serve", "-s", "build"]
+CMD ["npm", "start"]
 EXPOSE 3000

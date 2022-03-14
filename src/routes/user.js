@@ -10,15 +10,10 @@ export default function User() {
 
   const { id } = useParams()
 
-  const apiHost = () => {
-    const host = "https://rf2tracker.herokuapp.com";
-    return host;
-  }
-
   useEffect(() => {
     const token = localStorage.getItem('rtracker-jwt-token');
 
-    fetch(`${apiHost()}/users/${id}`, {
+    fetch(`${process.env.REACT_APP_HOST_URL}/users/${id}`, {
       headers: {
         "Authorization": `bearer ${token}`
       }

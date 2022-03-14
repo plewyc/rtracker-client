@@ -25,16 +25,17 @@ export default function GraphGapToLeader(props) {
     <VictoryChart>
       <VictoryAxis
         label="Time (s)"
-        style={{axisLabel: {padding: 30, fill: "white"}, ticks: {stroke: "grey", size: 5}, axis: { stroke: "white"}, tickLabels: { fill: "white"}}}
+        domain={[0, props.timed_statistics[props.timed_statistics.length - 1].time]}
+        style={{axisLabel: {padding: 30, fill: "black"}, ticks: {stroke: "grey", size: 5}, axis: { stroke: "black"}, tickLabels: { fill: "black"}}}
       />
       <VictoryAxis
         dependentAxis
         label="Gap to leader (s)"
         minDomain={0}
-        style={{axisLabel: {padding: 38, fill: "white"}, axis: { stroke: "white"}, tickLabels: { fill: "white"}, ticks: {stroke: "grey", size: 5}}}
+        style={{axisLabel: {padding: 38, fill: "black"}, axis: { stroke: "black"}, tickLabels: { fill: "black"}, ticks: {stroke: "grey", size: 5}}}
       />
       {lapLabels(props.lapTimeline)}
-      <VictoryLine interpolation="natural" style={{data: { stroke: "#c43a31" }}} data={props.timed_statistics} x="time" y="gap_to_leader" />
+      <VictoryLine interpolation="natural" style={{data: { stroke: "#c43a31" }}} data={props.timed_statistics.filter(items => items.gap_to_leader >= 0)} x="time" y="gap_to_leader" />
     </VictoryChart>
   )
 }

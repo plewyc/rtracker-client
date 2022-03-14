@@ -15,23 +15,8 @@ export default function Navbar() {
     <div className="nav-container">
       <div className="nav-group">
         <a className="nav-link" href="/">
-          rf2Tracker
+          rTracker
         </a>
-      </div>
-      <div className="nav-group">
-      { !isUserLoggedIn() && 
-        <div>
-          <a className="nav-link" href="#">
-            Features
-          </a>
-          <a className="nav-link" href="#">
-            Pricing
-          </a>
-          <a className="nav-link" href="#">
-            Contact
-          </a>
-        </div>
-      }
       </div>
       { isUserLoggedIn() ?
         <div className="nav-group">
@@ -40,6 +25,7 @@ export default function Navbar() {
         </div>
         :
         <div className="nav-group">
+          <div className="nav-link" style={{marginRight: "1rem"}} onClick={() => navigate("/users/login")}>Sign in</div>
           <div className="sign-up-btn" onClick={() => navigate("/users/signup")}>Sign up</div>
         </div>
       }

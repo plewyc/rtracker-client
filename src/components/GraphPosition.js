@@ -24,7 +24,7 @@ export default function GraphPosition(props) {
   return (
     <VictoryChart>
       <VictoryAxis
-        style={{axisLabel: {fill: "white", padding: 30}, axis: { stroke: "white"}, tickLabels: {fill: "white"}, ticks: {stroke: "grey", size: 5}}} label="Time (s)"
+        style={{axisLabel: {fill: "black", padding: 30}, axis: { stroke: "black"}, tickLabels: {fill: "black"}, ticks: {stroke: "grey", size: 5}}} label="Time (s)"
       />
       <VictoryAxis
         dependentAxis
@@ -32,7 +32,7 @@ export default function GraphPosition(props) {
         label="Position"
         domain={[1, props.num_opponents + 1]}
         tickValues={[...Array(props.num_opponents + 1).keys()].map(i => i % 2 === 0 ? i + 1 : null)}
-        style={{axisLabel: {fill: "white", padding: 38}, axis: { stroke: "white"}, tickLabels: { fill: "white" }, ticks: {stroke: "grey", size: 5} } }
+        style={{axisLabel: {fill: "black", padding: 38}, axis: { stroke: "black"}, tickLabels: { fill: "black" }, ticks: {stroke: "grey", size: 5} } }
       />
       {lapLabels(props.lapTimeline)}
       <VictoryLine style={{data: { stroke: "#c43a31" }}} data={props.position_data} x="time" y="position" />

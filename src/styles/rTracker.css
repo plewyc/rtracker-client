@@ -18,12 +18,6 @@
   position: fixed;
 }
 
-.hero-text-container {
-  position: fixed;
-  top: 21rem;
-  left: 10rem;
-}
-
 .hero-main {
   padding: 0;
   margin: 0;
@@ -55,4 +49,95 @@
 .btn-action:hover {
   cursor: pointer;
   background-color: #4c8fdc;
+}
+
+.hero {
+  margin: 0 auto;
+  width: 85%;
+  height: 70vh;
+  max-width: 1200px;
+  border-radius: 1rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./../../public/back2.png");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 25px rgb(123, 123, 123);
+}
+
+.hero-text-container {
+  margin-left: 4rem;
+}
+
+.hero-text {
+  color: white;
+  font-weight: bold;
+  font-size: 3.8em;
+  width: 60%;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+.hero-btn {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  font-size: 1.8em;
+  display: inline;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.hero-btn:hover {
+  background-color: rgb(11, 30, 45);
+  color: rgb(255, 255, 255);
+}
+
+.section-features {
+  box-shadow: 0 0 25px rgb(123, 123, 123);
+  background-color:rgb(11, 30, 45);
+  padding: 10rem 15rem;
+  padding-top: 5rem;
+}
+
+.text-features {
+  color: white;
+  font-size: 3em;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+.features-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.features-item {
+  width: 15rem;
+  background-color: white;
+  height: 18rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url("./../../public/cars.jpg");
+  /* background-repeat: no-repeat; */
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: 75% auto;
+  background-position: top 20rem center;
+}
+
+.features-item-text {
+  margin: 3rem 1.5rem;
+}
+
+.feature-heading {
+  font-weight: bold;
+  margin: 0;
+}
+
+.features-description {
+  margin-top: 0.4rem;
+  font-weight: 200;
 }

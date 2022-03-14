@@ -5,16 +5,11 @@ import Navbar from "../../components/navbar";
 export default function Login() {
   const navigate = useNavigate();
 
-  const apiHost = () => {
-    const host = "https://rf2tracker.herokuapp.com";
-    return host;
-  }
-
   const handleLogin = () => {
     const username = document.getElementById("login-username").value;
     const password = document.getElementById("login-password").value;
 
-    fetch(`${apiHost()}/users/login`, {
+    fetch(`${process.env.REACT_APP_HOST_URL}/users/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -44,7 +39,7 @@ export default function Login() {
         <div className="login-container">
           <div style={{marginTop: "2.2rem"}}>
             <h1 className="form-title">Sign in</h1>
-            <p className="sign-up-text">Don&#39t have an account yet? <a href="/users/signup">Sign in</a></p>
+            <p className="sign-up-text">Don&apos;t have an account yet? <a href="/users/signup">Sign up</a></p>
             <div className="form-container">
               <input id="login-username" className="form-text" type="text" placeholder="Username" />
               <input id="login-password" className="form-text" type="password" placeholder="Password" />

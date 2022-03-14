@@ -5,17 +5,12 @@ import Navbar from "../../components/navbar";
 export default function Signup() {
   const navigate = useNavigate();
 
-  const apiHost = () => {
-    const host = "https://rf2tracker.herokuapp.com";
-    return host;
-  }
-
   const handleLogin = () => {
     const username = document.getElementById("signup-username").value;
     const password = document.getElementById("signup-password").value;
     const passwordConfirmation = document.getElementById("signup-password-confirmation").value;
 
-    fetch(`${apiHost()}/users/`, {
+    fetch(`${process.env.REACT_APP_HOST_URL}/users/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

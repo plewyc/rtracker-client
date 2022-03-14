@@ -10,12 +10,8 @@ export default function ResultsQualifying() {
 
   const { id } = useParams()
 
-  const apiHost = () => {
-    return process.env.NODE_ENV === "production" ? process.env.REACT_APP_PRODUCTION_URL : process.env.REACT_APP_DEVELOPMENT_URL;
-  }
-
   useEffect(() => {
-    fetch(apiHost() + id + '/qualifying')
+    fetch(process.env.REACT_APP_HOST_URL + "/" +  id + '/qualifying')
     .then(res => res.json())
     .then(res => {
       setRace(res);

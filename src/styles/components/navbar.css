@@ -18,9 +18,10 @@
 
 .nav-link {
   text-decoration: none;
-  color: white;
+  color: black;
   margin: 0 1rem;
   font-size: 1.25em;
+  cursor: pointer;
 }
 
 .nav-link:hover {
@@ -29,7 +30,7 @@
 }
 
 .nav-btn-primary {
-  color: white;
+  color: black;
   cursor: pointer;
   background: green;
   padding: 0.3rem 0.8rem;
@@ -42,7 +43,7 @@
 }
 
 .nav-btn {
-  color: white;
+  color: black;
   cursor: pointer;
   background: rgb(0, 128, 119);
   padding: 0.3rem 0.8rem;
@@ -56,31 +57,31 @@
 
 .sign-up-btn {
   color: white;
+  background-color: black;
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 1.2em;
   line-height: 28px;
-  border: 1.5px solid white;
   padding: 0.2rem 1rem;
   border-radius: 0.3rem;
 }
 
 .sign-up-btn:hover {
   cursor: pointer;
-  background-color: white;
-  color: rgb(60, 60, 60)
+  background-color: rgb(69, 69, 69);
+  color: rgb(255, 255, 255)
 }
 
 .log-out-btn {
   margin-left: 0.7rem;
-  color: white;
+  color: black;
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 1.2em;
   line-height: 28px;
-  border: 1.5px solid white;
+  border: 1.5px solid black;
   padding: 0.2rem 0.7rem;
   border-radius: 0.3rem;
 }
