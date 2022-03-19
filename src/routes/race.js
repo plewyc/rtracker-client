@@ -5,6 +5,7 @@ import React from 'react';
 import Navbar from "../components/navbar";
 import ResultsHeader from "../components/ResultHeader.tsx";
 import ResultsTable from "../components/ResultsTable/ResultsTable.tsx";
+import GraphAllPositions from "../components/GraphAllPositions.tsx";
 
 export default function Races() {
   const [race, setRace] = useState([]);
@@ -46,6 +47,7 @@ export default function Races() {
           <Navbar />
           <div className="container">
             <ResultsHeader race={race} />
+            <GraphAllPositions drivers={race.drivers} />
             <ResultsTable drivers={race.drivers.sort((a, b) => a.race_pos > b.race_pos ? 1 : -1)} />
             <div style={{paddingTop: "1rem"}}>
               <div style={styles.deleteBtn} onClick={handleDelete}>Delete</div>
