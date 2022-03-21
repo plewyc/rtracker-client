@@ -22,7 +22,7 @@ export default function GraphPosition(props) {
   }
 
   return (
-    <VictoryChart>
+    <VictoryChart height={300}>
       <VictoryAxis
         style={{axisLabel: {fill: "black", padding: 30}, axis: { stroke: "black"}, tickLabels: {fill: "black"}, ticks: {stroke: "grey", size: 5}}} label="Time (s)"
       />

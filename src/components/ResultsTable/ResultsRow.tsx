@@ -1,12 +1,12 @@
 import "./ResultsTable.css";
-import GraphGapToLeader from "../GraphGapToLeader";
+// import GraphGapToLeader from "../GraphGapToLeader";
 import GraphPosition from "../GraphPosition";
+import GraphLapTimes from "../GraphLapTimes.tsx";
 
 export default function ResultsRow({ driver, numOpponents }) {
 
   const toggleDetails = (driverId) => {
     let driverDetails = document.getElementById("driver-" + driverId);
-    console.log(driverDetails.style.display);
     if (driverDetails.style.display !== "block") {
       driverDetails.style.display = "block";
     } else {
@@ -25,7 +25,8 @@ export default function ResultsRow({ driver, numOpponents }) {
       </div>
       <div id={`driver-${driver.id}`} className="driver-details">
         <div className="graphs">
-          <GraphGapToLeader timed_statistics={driver.scoring_details} lapTimeline={driver.lap_timeline} />
+          {/* <GraphGapToLeader timed_statistics={driver.scoring_details} lapTimeline={driver.lap_timeline} /> */}
+          <GraphLapTimes laps={driver.laps} />
           <GraphPosition position_data={driver.scoring_details} num_opponents={numOpponents} lapTimeline={driver.lap_timeline} />
         </div>
           <div className={"driver-stats-alt"}>
