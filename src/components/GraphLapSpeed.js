@@ -14,7 +14,7 @@ export default function GraphLapSpeed(props) {
           dependentAxis
           style={{axisLabel: {padding: 5, fill: "rgba(133, 133, 133, 0.2)"}, axis: { stroke: "rgba(133, 133, 133, 0.2)", strokeDasharray: "10"}, tickLabels: { fill: "none"}}}
           axisValue={time}
-          label={`lap ${index + 2}`}
+          label={`lap ${index + 1}`}
           standalone={false}
         />
       ))
