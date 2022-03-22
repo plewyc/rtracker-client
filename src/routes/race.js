@@ -5,6 +5,7 @@ import React from 'react';
 import Navbar from "../components/navbar";
 import ResultsHeader from "../components/ResultHeader.tsx";
 import ResultsTable from "../components/ResultsTable/ResultsTable.tsx";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function Races() {
   const [race, setRace] = useState([]);
@@ -39,7 +40,9 @@ export default function Races() {
   return (
     <div>
       { isLoading &&
-      <div>Loading.. please wait!</div>
+        <div style={{height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+          <CircularProgress />
+        </div>
       }
       { !isLoading &&
         <div>
