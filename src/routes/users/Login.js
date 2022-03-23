@@ -1,13 +1,16 @@
 import "../../styles/users/login.css";
 import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 import Navbar from "../../components/navbar";
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = () => {
     const username = document.getElementById("login-username").value;
     const password = document.getElementById("login-password").value;
+    setIsLoading(true);
 
     fetch(`${process.env.REACT_APP_HOST_URL}/users/login`, {
       method: 'POST',
@@ -43,7 +46,7 @@ export default function Login() {
             <div className="form-container">
               <input id="login-username" className="form-text" type="text" placeholder="Username" />
               <input id="login-password" className="form-text" type="password" placeholder="Password" />
-              <div className="form-submit" onClick={() => handleLogin()}>Sign in</div>
+              <div className="form-submit" onClick={() => handleLogin()}>{isLoading ? "Loading" : "Sign in"}</div>
               </div>
             </div>
           </div>
